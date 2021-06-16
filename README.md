@@ -3,12 +3,12 @@ Work in progress Go wrapper for the Couchbase Cloud REST API
 
 ## Usage
 
-`go get github.com/couchbaselabs/cloud-monitoring-tool/couchbasecloudclient`
+`go get github.com/couchbaselabs/couchbase-cloud-go-client`
 
 ### Import
 ```go
 import (
-  "github.com/couchbaselabs/couchbase-cloud-go-client"
+    "github.com/couchbaselabs/couchbase-cloud-go-client"
 )
 ```
 
