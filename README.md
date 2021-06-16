@@ -65,3 +65,4 @@ for ok := true; ok; ok = page <= lastPage {
 ## TODO
 
 - Build better (functional) pagination capabilities into the client
+- Unit/integration testing
