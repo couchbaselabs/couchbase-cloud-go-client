@@ -8,7 +8,7 @@ Work in progress Go wrapper for the Couchbase Cloud REST API
 ### Import
 ```go
 import (
-  "github.com/couchbaselabs/cloud-monitoring-tool/couchbasecloudclient"
+  "github.com/couchbaselabs/couchbase-cloud-go-client"
 )
 ```
 
