@@ -64,5 +64,10 @@ for ok := true; ok; ok = page <= lastPage {
 
 ## TODO
 
-- Build better (functional) pagination capabilities into the client
+- Build better (functional) pagination capabilities into the client. E.g.  iterator functions like aws has 
+  https://docs.aws.amazon.com/sdk-for-go/api/service/s3/#S3.ListObjectsV2Pages
 - Unit/integration testing
+- Add documentation strings to all public types and functions so that documentation can be auto-generated from the code.
+- Add linter https://github.com/golangci/golangci-lint to help maintain code quality.
+- Auto-generate boilerplate code for the rest of the client using OpenAPI spec for the Couchbase Cloud API. This could 
+  also be used to generate a server stub for unit testing or as an emulator for integration level tests.

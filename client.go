@@ -78,11 +78,7 @@ func (client *CouchbaseCloudClient) sendRequest(req *http.Request, dataType inte
 		return fmt.Errorf("unknown error, status code: %d", res.StatusCode)
 	}
 
-	if err = json.NewDecoder(res.Body).Decode(&dataType); err != nil {
-		return err
-	}
-
-	return nil
+	return json.NewDecoder(res.Body).Decode(&dataType)
 }
 
 func (client *CouchbaseCloudClient) getApiEndpoint(endpoint string) string {

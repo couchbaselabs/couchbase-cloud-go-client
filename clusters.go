@@ -7,26 +7,26 @@ import (
 )
 
 type ClustersList struct {
-	Cursor Cursor  `json:"cursor"`
+	Cursor Cursor    `json:"cursor"`
 	Data   []Cluster `json:"data"`
 }
 
 type Cluster struct {
-	Id        string
-	CloudId   string
-	Name      string
-	Nodes     int
-	ProjectId string
-	Services  []string
-	TenantId  string
+	Id        string   `json:"id"`
+	CloudId   string   `json:"cloudId"`
+	Name      string   `json:"name"`
+	Nodes     int      `json:"nodes"`
+	ProjectId string   `json:"projectId"`
+	Services  []string `json:"services"`
+	TenantId  string   `json:"tenantId"`
 }
 
 type ListClustersOptions struct {
-	Page      int
-	PerPage   int
-	SortBy    *string
-	CloudId   *string
-	ProjectId *string
+	Page      int     `json:"page"`
+	PerPage   int     `json:"perPage"`
+	SortBy    *string `json:"sortBy"`
+	CloudId   *string `json:"cloudId"`
+	ProjectId *string `json:"projectId"`
 }
 
 const listClustersUrl = "/clusters"

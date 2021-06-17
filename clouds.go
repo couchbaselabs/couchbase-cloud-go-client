@@ -12,19 +12,19 @@ type CloudsList struct {
 }
 
 type Cloud struct {
-	Id                 string
-	Name               string
-	Provider           string
-	Region             string
-	Status             string
-	VirtualNetworkCIDR string
-	VirtualNetworkID   string
+	Id                 string `json:"id"`
+	Name               string `json:"name"`
+	Provider           string `json:"provider"`
+	Region             string `json:"region"`
+	Status             string `json:"status"`
+	VirtualNetworkCIDR string `json:"virtualNetworkCidr"`
+	VirtualNetworkID   string `json:"virtualNetworkId"`
 }
 
 type ListCloudsOptions struct {
-	Page    int
-	PerPage int
-	SortBy  *string
+	Page    int     `json:"page"`
+	PerPage int     `json:"perPage"`
+	SortBy  *string `json:"sortBy"`
 }
 
 const listCloudsUrl = "/clouds"
