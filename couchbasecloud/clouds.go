@@ -29,34 +29,24 @@ type ListCloudsOptions struct {
 	SortBy  *string `json:"sortBy"`
 }
 
-const listCloudsUrl = "/clouds"
-
+// ListClouds returns a page of clouds results. The page returned can be controlled via the options argument.
 func (client *CouchbaseCloudClient) ListClouds(options *ListCloudsOptions) (*CloudsList, error) {
-	cloudsUrl := client.BaseURL + client.getApiEndpoint(listCloudsUrl)
+	var clouds *CloudsList
+	err := client.do(&request{
+		endpoint:        listCloudsEndpoint.format(),
+		method:          http.MethodGet,
+		contentType:     contentTypeJSON,
+		queryParameters: getCloudsPagingOption(options),
+	}, &clouds)
 
-	if options != nil {
-		setListCloudsParams(&cloudsUrl, *options)
-	}
-
-	req, err := http.NewRequest(http.MethodGet, cloudsUrl, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	res := CloudsList{}
-
-	if err := client.sendRequest(req, &res, true); err != nil {
-		return nil, err
-	}
-
-	return &res, nil
+	return clouds, err
 }
 
 // ListCloudPages allows iterating over all the clouds. For every page of cloud items it will call the callback and pass
 // the page worth of clouds as well as a boolean that indicates whether is is the last page or not.
 // The function iterates over all the pages either until the callback returns false, the REST endpoint returns an error
 // or it runs out of pages.
-func (client *CouchbaseCloudClient) ListCloudPages(options *ListCloudsOptions, fn func (Clouds, bool) bool) error {
+func (client *CouchbaseCloudClient) ListCloudPages(options *ListCloudsOptions, fn func(Clouds, bool) bool) error {
 	var localOpts ListCloudsOptions
 	if options != nil {
 		localOpts = *options
@@ -77,26 +67,28 @@ func (client *CouchbaseCloudClient) ListCloudPages(options *ListCloudsOptions, f
 			return nil
 		}
 
-		localOpts.Page ++
+		localOpts.Page++
 	}
 }
 
-func setListCloudsParams(urlStr *string, options ListCloudsOptions) {
+func getCloudsPagingOption(opts *ListCloudsOptions) url.Values {
 	params := url.Values{}
 
-	if options.SortBy != nil {
-		params.Add("sortBy", *options.SortBy)
+	if opts == nil {
+		return params
 	}
 
-	if options.Page != 0 {
-		params.Add("page", strconv.Itoa(options.Page))
+	if opts.SortBy != nil {
+		params.Add("sortBy", *opts.SortBy)
 	}
 
-	if options.PerPage != 0 {
-		params.Add("perPage", strconv.Itoa(options.PerPage))
+	if opts.Page != 0 {
+		params.Add("page", strconv.Itoa(opts.Page))
 	}
 
-	if urlParams := params.Encode(); urlParams != "" {
-		*urlStr += "?" + urlParams
+	if opts.PerPage != 0 {
+		params.Add("perPage", strconv.Itoa(opts.PerPage))
 	}
+
+	return params
 }

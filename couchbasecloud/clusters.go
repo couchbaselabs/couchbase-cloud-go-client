@@ -31,27 +31,17 @@ type ListClustersOptions struct {
 	ProjectId *string `json:"projectId"`
 }
 
-const listClustersUrl = "/clusters"
-
+// ListClusters returns a page of clusters results. The page returned can be controlled with the 'options' argument.
 func (client *CouchbaseCloudClient) ListClusters(options *ListClustersOptions) (*ClustersList, error) {
-	cloudsUrl := client.BaseURL + client.getApiEndpoint(listClustersUrl)
+	var clusters *ClustersList
+	err := client.do(&request{
+		endpoint:        listClustersEndpoint.format(),
+		method:          http.MethodGet,
+		contentType:     contentTypeJSON,
+		queryParameters: getClustersPagingOption(options),
+	}, &clusters)
 
-	if options != nil {
-		setListClustersParams(&cloudsUrl, *options)
-	}
-
-	req, err := http.NewRequest(http.MethodGet, cloudsUrl, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	res := ClustersList{}
-
-	if err := client.sendRequest(req, &res, true); err != nil {
-		return nil, err
-	}
-
-	return &res, nil
+	return clusters, err
 }
 
 // ListClusterPages allows iterating over all the clusters. For every page of cluster items it will call the callback
@@ -83,30 +73,24 @@ func (client *CouchbaseCloudClient) ListClusterPages(opts *ListClustersOptions, 
 	}
 }
 
-func setListClustersParams(clustersUrl *string, options ListClustersOptions) {
+func getClustersPagingOption(opts *ListClustersOptions) url.Values {
 	params := url.Values{}
 
-	if options.Page != 0 {
-		params.Add("page", strconv.Itoa(options.Page))
+	if opts == nil {
+		return params
 	}
 
-	if options.PerPage != 0 {
-		params.Add("perPage", strconv.Itoa(options.PerPage))
+	if opts.SortBy != nil {
+		params.Add("sortBy", *opts.SortBy)
 	}
 
-	if options.SortBy != nil {
-		params.Add("sortBy", *options.SortBy)
+	if opts.Page != 0 {
+		params.Add("page", strconv.Itoa(opts.Page))
 	}
 
-	if options.CloudId != nil {
-		params.Add("cloudId", *options.CloudId)
+	if opts.PerPage != 0 {
+		params.Add("perPage", strconv.Itoa(opts.PerPage))
 	}
 
-	if options.ProjectId != nil {
-		params.Add("projectId", *options.ProjectId)
-	}
-
-	if urlParams := params.Encode(); urlParams != "" {
-		*clustersUrl += "?" + urlParams
-	}
+	return params
 }

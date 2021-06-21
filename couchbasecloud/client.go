@@ -1,6 +1,8 @@
 package couchbasecloud
 
 import (
+	"bytes"
+	"context"
 	"crypto/hmac"
 	"crypto/sha256"
 	"encoding/base64"
@@ -54,23 +56,42 @@ func NewClient(apiAccessKey string, apiSecretKey string) *CouchbaseCloudClient {
 	}
 }
 
-func (client *CouchbaseCloudClient) sendRequest(req *http.Request, dataType interface{}, jsonReqBody bool) error {
+func (client *CouchbaseCloudClient) do(r *request, response interface{}) error {
 	timestamp := getEpochTimestampMs()
+
+	var ctx context.Context
+	if r.timeout > 0 {
+		var cancel context.CancelFunc
+		ctx, cancel = context.WithTimeout(context.Background(), r.timeout)
+		defer cancel()
+	} else {
+		ctx = context.Background()
+	}
+
+	req, err := http.NewRequestWithContext(ctx, r.method, client.BaseURL+client.getApiEndpoint(r.endpoint),
+		bytes.NewReader(r.body))
+	if err != nil {
+		return err
+	}
+
 	bearerToken := getBearerToken(client.apiAccessKey, client.apiSecretKey, req.Method, req.URL.RequestURI(), timestamp)
 
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", bearerToken))
 	req.Header.Set("Accept", "application/json; charset=utf-8")
 	req.Header.Set("Couchbase-Timestamp", timestamp)
 
-	if jsonReqBody {
-		req.Header.Set("Content-Type", "application/json; charset=utf-8")
+	if r.contentType != "" {
+		req.Header.Set("Content-Type", contentTypeJSON)
+	}
+
+	if len(r.queryParameters) != 0 {
+		req.URL.RawQuery = r.queryParameters.Encode()
 	}
 
 	res, err := client.HTTPClient.Do(req)
 	if err != nil {
 		return err
 	}
-
 	defer res.Body.Close()
 
 	if res.StatusCode != http.StatusOK {
@@ -82,7 +103,7 @@ func (client *CouchbaseCloudClient) sendRequest(req *http.Request, dataType inte
 		return fmt.Errorf("unknown error, status code: %d", res.StatusCode)
 	}
 
-	return json.NewDecoder(res.Body).Decode(&dataType)
+	return json.NewDecoder(res.Body).Decode(&response)
 }
 
 func (client *CouchbaseCloudClient) getApiEndpoint(endpoint string) string {
