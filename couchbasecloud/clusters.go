@@ -1,6 +1,7 @@
 package couchbasecloud
 
 import (
+	"fmt"
 	"net/http"
 	"net/url"
 	"strconv"
@@ -11,6 +12,10 @@ type Clusters []Cluster
 type ClustersList struct {
 	Cursor Cursor    `json:"cursor"`
 	Data   []Cluster `json:"data"`
+}
+
+type ClusterStatus struct {
+	Status string `json:"status"`
 }
 
 type Cluster struct {
@@ -71,6 +76,39 @@ func (client *CouchbaseCloudClient) ListClusterPages(opts *ListClustersOptions, 
 
 		localOpts.Page++
 	}
+}
+
+// GetClusterStatus returns the status of the cluster identified by 'id'.
+func (client *CouchbaseCloudClient) GetClusterStatus(id string) (*ClusterStatus, error) {
+	if id == "" {
+		return nil, fmt.Errorf("cluster id is required")
+	}
+
+	var status *ClusterStatus
+	err := client.do(&request{
+		endpoint:    clusterStatusEndpoint.format(id),
+		method:      http.MethodGet,
+		contentType: contentTypeJSON,
+	}, &status)
+
+	return status, err
+}
+
+// GetClusterHealth retrieves cluster health and status. Health stats of the cluster are returned only for clusters
+// with ready status.
+func (client *CouchbaseCloudClient) GetClusterHealth(id string) (*ClusterHealth, error) {
+	if id == "" {
+		return nil, fmt.Errorf("cluster id is required")
+	}
+
+	var health *ClusterHealth
+	err := client.do(&request{
+		endpoint:    clusterHealthEndpoint.format(id),
+		method:      http.MethodGet,
+		contentType: contentTypeJSON,
+	}, &health)
+
+	return health, err
 }
 
 func getClustersPagingOption(opts *ListClustersOptions) url.Values {

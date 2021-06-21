@@ -8,8 +8,10 @@ import (
 type endpoint string
 
 const (
-	listCloudsEndpoint   endpoint = "/clouds"
-	listClustersEndpoint endpoint = "/clusters"
+	listCloudsEndpoint    endpoint = "/clouds"
+	listClustersEndpoint  endpoint = "/clusters"
+	clusterStatusEndpoint endpoint = "/clusters/%s/status"
+	clusterHealthEndpoint endpoint = "/clusters/%s/health"
 )
 
 // endpoint formats an endpoint based on a template string. It will URL path escape the provided arguments.
