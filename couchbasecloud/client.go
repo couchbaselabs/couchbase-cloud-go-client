@@ -74,6 +74,10 @@ func (client *CouchbaseCloudClient) do(r *request, response interface{}) error {
 		return err
 	}
 
+	if len(r.queryParameters) != 0 {
+		req.URL.RawQuery = r.queryParameters.Encode()
+	}
+
 	bearerToken := getBearerToken(client.apiAccessKey, client.apiSecretKey, req.Method, req.URL.RequestURI(), timestamp)
 
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", bearerToken))
@@ -82,10 +86,6 @@ func (client *CouchbaseCloudClient) do(r *request, response interface{}) error {
 
 	if r.contentType != "" {
 		req.Header.Set("Content-Type", contentTypeJSON)
-	}
-
-	if len(r.queryParameters) != 0 {
-		req.URL.RawQuery = r.queryParameters.Encode()
 	}
 
 	res, err := client.HTTPClient.Do(req)
