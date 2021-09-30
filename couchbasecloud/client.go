@@ -229,6 +229,7 @@ func (c *APIClient) prepareRequest(
 		}
 	}
 
+	fmt.Println(ctx.Value(ContextAPIKeys))
 	// add form parameters and file if available.
 	if strings.HasPrefix(headerParams["Content-Type"], "multipart/form-data") && len(formParams) > 0 || (len(fileBytes) > 0 && fileName != "") {
 		if body != nil {
@@ -352,18 +353,20 @@ func (c *APIClient) prepareRequest(
 		}
 
 		// AccessToken Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(string); ok {
-			localVarRequest.Header.Add("Authorization", "Bearer "+auth)
+		if keys, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			accessKey := keys["accessKey"].Key
+			secretKey := keys["secretKey"].Key
+			timestamp := getEpochTimestampMs()
+
+			bearerToken := getBearerToken(accessKey, secretKey, method, url.RequestURI(), timestamp)
+			localVarRequest.Header.Add("Authorization", "Bearer " + bearerToken)
+			localVarRequest.Header.Add("Couchbase-Timestamp", timestamp)
 		}
 	}
 
 	for header, value := range c.cfg.DefaultHeader {
 		localVarRequest.Header.Add(header, value)
 	}
-
-	timestamp := getEpochTimestampMs()
-	localVarRequest.Header.Add("Couchbase-Timestamp", timestamp)
-
 	return localVarRequest, nil
 }
 
