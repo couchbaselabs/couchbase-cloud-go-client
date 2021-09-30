@@ -37,10 +37,10 @@ func TestProjects(t *testing.T) {
 		ContextAPIKeys,
 		map[string]APIKey{
 			"accessKey": {
-				Key: "1jSX7XQRMN5qu4YZaB4SN5N4J0l497sz",
+				Key: "",
 			},
 			"secretKey": {
-				Key: "647Q982Dv589XpMhWAafBM0EGcMWvN04TviBBIDzsPOlCo8qz8pTtlPHCcRkIuVd",
+				Key: "",
 			},
 		},
 	)
