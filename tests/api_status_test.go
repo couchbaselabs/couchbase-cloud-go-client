@@ -23,12 +23,10 @@ func TestStatus(t *testing.T) {
 		},
 	)
 	configuration := couchbasecloud.NewConfiguration()
-	api_client := couchbasecloud.NewAPIClient(configuration)
-	resp, r, err := api_client.StatusApi.StatusShow(ctx).Execute()
+	apiClient := couchbasecloud.NewAPIClient(configuration)
+	resp, _, err := apiClient.StatusApi.StatusShow(ctx).Execute()
 	if err != nil {
 		t.Fatalf("Error when calling `StatusApi.StatusShow(ctx)`: %v\n", err)
-		t.Fatalf("Full HTTP response: %v\n", r)
-
 	}
 	fmt.Fprintf(os.Stdout, "Response from `StatusApi.StatusShow(ctx)`: %v\n", resp)
 }
