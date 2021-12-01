@@ -15,15 +15,15 @@ import (
 	"fmt"
 )
 
-// V3SupportPackageTimezones * `ET` - Eastern Time * `GMT` - Greenwich Mean Time * `IST` - India Standard Time * `PT` - Pacific Time 
+// V3SupportPackageTimezones * `ET` - Eastern Time * `GMT` - Greenwich Mean Time * `IST` - India Standard Time * `PT` - Pacific Time
 type V3SupportPackageTimezones string
 
 // List of v3SupportPackageTimezones
 const (
-	ET V3SupportPackageTimezones = "ET"
-	GMT V3SupportPackageTimezones = "GMT"
-	IST V3SupportPackageTimezones = "IST"
-	PT V3SupportPackageTimezones = "PT"
+	V3_ET  V3SupportPackageTimezones = "ET"
+	V3_GMT V3SupportPackageTimezones = "GMT"
+	V3_IST V3SupportPackageTimezones = "IST"
+	V3_PT  V3SupportPackageTimezones = "PT"
 )
 
 var allowedV3SupportPackageTimezonesEnumValues = []V3SupportPackageTimezones{
@@ -111,4 +111,3 @@ func (v *NullableV3SupportPackageTimezones) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

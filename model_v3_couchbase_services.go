@@ -20,12 +20,12 @@ type V3CouchbaseServices string
 
 // List of v3CouchbaseServices
 const (
-	DATA V3CouchbaseServices = "data"
-	INDEX V3CouchbaseServices = "index"
-	QUERY V3CouchbaseServices = "query"
-	SEARCH V3CouchbaseServices = "search"
-	EVENTING V3CouchbaseServices = "eventing"
-	ANALYTICS V3CouchbaseServices = "analytics"
+	V3_DATA      V3CouchbaseServices = "data"
+	V3_INDEX     V3CouchbaseServices = "index"
+	V3_QUERY     V3CouchbaseServices = "query"
+	V3_SEARCH    V3CouchbaseServices = "search"
+	V3_EVENTING  V3CouchbaseServices = "eventing"
+	V3_ANALYTICS V3CouchbaseServices = "analytics"
 )
 
 var allowedV3CouchbaseServicesEnumValues = []V3CouchbaseServices{
@@ -115,4 +115,3 @@ func (v *NullableV3CouchbaseServices) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

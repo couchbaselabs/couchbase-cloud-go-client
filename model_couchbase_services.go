@@ -20,11 +20,11 @@ type CouchbaseServices string
 
 // List of couchbaseServices
 const (
-	DATA CouchbaseServices = "data"
-	INDEX CouchbaseServices = "index"
-	QUERY CouchbaseServices = "query"
-	SEARCH CouchbaseServices = "search"
-	EVENTING CouchbaseServices = "eventing"
+	DATA      CouchbaseServices = "data"
+	INDEX     CouchbaseServices = "index"
+	QUERY     CouchbaseServices = "query"
+	SEARCH    CouchbaseServices = "search"
+	EVENTING  CouchbaseServices = "eventing"
 	ANALYTICS CouchbaseServices = "analytics"
 )
 
@@ -115,4 +115,3 @@ func (v *NullableCouchbaseServices) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

@@ -20,9 +20,9 @@ type V3SupportPackageType string
 
 // List of v3SupportPackageType
 const (
-	BASIC V3SupportPackageType = "Basic"
-	DEVELOPER_PRO V3SupportPackageType = "DeveloperPro"
-	ENTERPRISE V3SupportPackageType = "Enterprise"
+	V3_BASIC         V3SupportPackageType = "Basic"
+	V3_DEVELOPER_PRO V3SupportPackageType = "DeveloperPro"
+	V3_ENTERPRISE    V3SupportPackageType = "Enterprise"
 )
 
 var allowedV3SupportPackageTypeEnumValues = []V3SupportPackageType{
@@ -109,4 +109,3 @@ func (v *NullableV3SupportPackageType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

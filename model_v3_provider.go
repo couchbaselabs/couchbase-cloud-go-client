@@ -20,9 +20,9 @@ type V3Provider string
 
 // List of v3Provider
 const (
-	AWS V3Provider = "aws"
-	AZURE V3Provider = "azure"
-	GCP V3Provider = "gcp"
+	V3_AWS   V3Provider = "aws"
+	V3_AZURE V3Provider = "azure"
+	V3_GCP   V3Provider = "gcp"
 )
 
 var allowedV3ProviderEnumValues = []V3Provider{
@@ -109,4 +109,3 @@ func (v *NullableV3Provider) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
