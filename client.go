@@ -13,6 +13,9 @@ package couchbasecapella
 import (
     "bytes"
     "context"
+    "crypto/hmac"
+    "crypto/sha256"
+    "encoding/base64"
     "encoding/json"
     "encoding/xml"
     "errors"
@@ -53,8 +56,6 @@ type APIClient struct {
 
     ClustersApi *ClustersApiService
 
-    ClustersV3Api *ClustersV3ApiService
-
     ProjectsApi *ProjectsApiService
 
     StatusApi *StatusApiService
@@ -80,7 +81,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
     // API Services
     c.CloudsApi = (*CloudsApiService)(&c.common)
     c.ClustersApi = (*ClustersApiService)(&c.common)
-    c.ClustersV3Api = (*ClustersV3ApiService)(&c.common)
     c.ProjectsApi = (*ProjectsApiService)(&c.common)
     c.StatusApi = (*StatusApiService)(&c.common)
     c.UsersApi = (*UsersApiService)(&c.common)

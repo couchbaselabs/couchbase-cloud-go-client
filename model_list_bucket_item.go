@@ -16,7 +16,6 @@ import (
 
 // ListBucketItem struct for ListBucketItem
 type ListBucketItem struct {
-	Id string `json:"id"`
 	Name string `json:"name"`
 	MemoryQuota int32 `json:"memoryQuota"`
 	Replicas int32 `json:"replicas"`
@@ -28,9 +27,8 @@ type ListBucketItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBucketItem(id string, name string, memoryQuota int32, replicas int32, conflictResolution ConflictResolution, status string) *ListBucketItem {
+func NewListBucketItem(name string, memoryQuota int32, replicas int32, conflictResolution ConflictResolution, status string) *ListBucketItem {
 	this := ListBucketItem{}
-	this.Id = id
 	this.Name = name
 	this.MemoryQuota = memoryQuota
 	this.Replicas = replicas
@@ -44,33 +42,9 @@ func NewListBucketItem(id string, name string, memoryQuota int32, replicas int32
 // but it doesn't guarantee that properties required by API are set
 func NewListBucketItemWithDefaults() *ListBucketItem {
 	this := ListBucketItem{}
-	var conflictResolution ConflictResolution = SEQNO
+	var conflictResolution ConflictResolution = CONFLICTRESOLUTION_SEQNO
 	this.ConflictResolution = conflictResolution
 	return &this
-}
-
-// GetId returns the Id field value
-func (o *ListBucketItem) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *ListBucketItem) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *ListBucketItem) SetId(v string) {
-	o.Id = v
 }
 
 // GetName returns the Name field value
@@ -195,9 +169,6 @@ func (o *ListBucketItem) SetStatus(v string) {
 
 func (o ListBucketItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
 	if true {
 		toSerialize["name"] = o.Name
 	}

@@ -32,7 +32,7 @@ func NewCouchbaseBucketSpec(name string, memoryQuota int32) *CouchbaseBucketSpec
 	this.MemoryQuota = memoryQuota
 	var replicas int32 = 1
 	this.Replicas = &replicas
-	var conflictResolution ConflictResolution = SEQNO
+	var conflictResolution ConflictResolution = CONFLICTRESOLUTION_SEQNO
 	this.ConflictResolution = &conflictResolution
 	return &this
 }
@@ -44,7 +44,7 @@ func NewCouchbaseBucketSpecWithDefaults() *CouchbaseBucketSpec {
 	this := CouchbaseBucketSpec{}
 	var replicas int32 = 1
 	this.Replicas = &replicas
-	var conflictResolution ConflictResolution = SEQNO
+	var conflictResolution ConflictResolution = CONFLICTRESOLUTION_SEQNO
 	this.ConflictResolution = &conflictResolution
 	return &this
 }

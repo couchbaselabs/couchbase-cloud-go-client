@@ -20,9 +20,9 @@ type Provider string
 
 // List of provider
 const (
-	AWS Provider = "aws"
-	GCP Provider = "gcp"
-	AZURE Provider = "azure"
+	PROVIDER_AWS Provider = "aws"
+	PROVIDER_GCP Provider = "gcp"
+	PROVIDER_AZURE Provider = "azure"
 )
 
 var allowedProviderEnumValues = []Provider{

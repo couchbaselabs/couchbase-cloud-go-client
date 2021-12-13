@@ -20,9 +20,9 @@ type SupportPackageType string
 
 // List of supportPackageType
 const (
-	ENTERPRISE SupportPackageType = "enterprise"
-	DEVELOPER_PRO SupportPackageType = "developerPro"
-	FORUM_SUPPORT SupportPackageType = "forumSupport"
+	SUPPORTPACKAGETYPE_ENTERPRISE SupportPackageType = "enterprise"
+	SUPPORTPACKAGETYPE_DEVELOPER_PRO SupportPackageType = "developerPro"
+	SUPPORTPACKAGETYPE_FORUM_SUPPORT SupportPackageType = "forumSupport"
 )
 
 var allowedSupportPackageTypeEnumValues = []SupportPackageType{

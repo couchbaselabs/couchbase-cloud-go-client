@@ -20,10 +20,10 @@ type SupportTimezones string
 
 // List of supportTimezones
 const (
-	ET SupportTimezones = "ET"
-	GMT SupportTimezones = "GMT"
-	IST SupportTimezones = "IST"
-	PT SupportTimezones = "PT"
+	SUPPORTTIMEZONES_ET SupportTimezones = "ET"
+	SUPPORTTIMEZONES_GMT SupportTimezones = "GMT"
+	SUPPORTTIMEZONES_IST SupportTimezones = "IST"
+	SUPPORTTIMEZONES_PT SupportTimezones = "PT"
 )
 
 var allowedSupportTimezonesEnumValues = []SupportTimezones{

@@ -20,8 +20,8 @@ type AllowListRules string
 
 // List of allowListRules
 const (
-	TEMPORARY AllowListRules = "temporary"
-	PERMANENT AllowListRules = "permanent"
+	ALLOWLISTRULES_TEMPORARY AllowListRules = "temporary"
+	ALLOWLISTRULES_PERMANENT AllowListRules = "permanent"
 )
 
 var allowedAllowListRulesEnumValues = []AllowListRules{

@@ -20,8 +20,8 @@ type BucketRoleTypes string
 
 // List of bucketRoleTypes
 const (
-	WRITER BucketRoleTypes = "data_writer"
-	READER BucketRoleTypes = "data_reader"
+	BUCKETROLETYPES_WRITER BucketRoleTypes = "data_writer"
+	BUCKETROLETYPES_READER BucketRoleTypes = "data_reader"
 )
 
 var allowedBucketRoleTypesEnumValues = []BucketRoleTypes{
