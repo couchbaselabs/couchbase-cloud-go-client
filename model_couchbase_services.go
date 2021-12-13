@@ -20,12 +20,12 @@ type CouchbaseServices string
 
 // List of couchbaseServices
 const (
-	DATA CouchbaseServices = "data"
-	INDEX CouchbaseServices = "index"
-	QUERY CouchbaseServices = "query"
-	SEARCH CouchbaseServices = "search"
-	EVENTING CouchbaseServices = "eventing"
-	ANALYTICS CouchbaseServices = "analytics"
+	COUCHBASESERVICES_DATA CouchbaseServices = "data"
+	COUCHBASESERVICES_INDEX CouchbaseServices = "index"
+	COUCHBASESERVICES_QUERY CouchbaseServices = "query"
+	COUCHBASESERVICES_SEARCH CouchbaseServices = "search"
+	COUCHBASESERVICES_EVENTING CouchbaseServices = "eventing"
+	COUCHBASESERVICES_ANALYTICS CouchbaseServices = "analytics"
 )
 
 var allowedCouchbaseServicesEnumValues = []CouchbaseServices{

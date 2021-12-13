@@ -12,7 +12,6 @@ package couchbasecapella
 
 import (
 	"encoding/json"
-	"time"
 	"fmt"
 )
 

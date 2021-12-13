@@ -20,8 +20,8 @@ type ConflictResolution string
 
 // List of conflictResolution
 const (
-	LWW ConflictResolution = "lww"
-	SEQNO ConflictResolution = "seqno"
+	CONFLICTRESOLUTION_LWW ConflictResolution = "lww"
+	CONFLICTRESOLUTION_SEQNO ConflictResolution = "seqno"
 )
 
 var allowedConflictResolutionEnumValues = []ConflictResolution{

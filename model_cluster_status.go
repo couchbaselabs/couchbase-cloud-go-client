@@ -20,22 +20,22 @@ type ClusterStatus string
 
 // List of clusterStatus
 const (
-	DRAFT ClusterStatus = "draft"
-	NEEDS_DEPLOY ClusterStatus = "needs_deploy"
-	JOB_SCHEDULED ClusterStatus = "job_scheduled"
-	DEPLOYING ClusterStatus = "deploying"
-	DEPLOY_FAILED ClusterStatus = "deploy_failed"
-	DEPLOY_SUCCEEDED ClusterStatus = "deploy_succeeded"
-	READY ClusterStatus = "ready"
-	DESTROYING ClusterStatus = "destroying"
-	DESTROY_FAILED ClusterStatus = "destroy_failed"
-	DESTROY_SUCCEEDED ClusterStatus = "destroy_succeeded"
-	METRICS_FAILED ClusterStatus = "metrics_failed"
-	PREFLIGHT_STARTED ClusterStatus = "preflight_started"
-	PREFLIGHT_FAILED ClusterStatus = "preflight_failed"
-	PREFLIGHT_SUCCEEDED ClusterStatus = "preflight_succeeded"
-	MANAGEMENT_BLOCKED ClusterStatus = "management_blocked"
-	UPGRADING ClusterStatus = "upgrading"
+	CLUSTERSTATUS_DRAFT ClusterStatus = "draft"
+	CLUSTERSTATUS_NEEDS_DEPLOY ClusterStatus = "needs_deploy"
+	CLUSTERSTATUS_JOB_SCHEDULED ClusterStatus = "job_scheduled"
+	CLUSTERSTATUS_DEPLOYING ClusterStatus = "deploying"
+	CLUSTERSTATUS_DEPLOY_FAILED ClusterStatus = "deploy_failed"
+	CLUSTERSTATUS_DEPLOY_SUCCEEDED ClusterStatus = "deploy_succeeded"
+	CLUSTERSTATUS_READY ClusterStatus = "ready"
+	CLUSTERSTATUS_DESTROYING ClusterStatus = "destroying"
+	CLUSTERSTATUS_DESTROY_FAILED ClusterStatus = "destroy_failed"
+	CLUSTERSTATUS_DESTROY_SUCCEEDED ClusterStatus = "destroy_succeeded"
+	CLUSTERSTATUS_METRICS_FAILED ClusterStatus = "metrics_failed"
+	CLUSTERSTATUS_PREFLIGHT_STARTED ClusterStatus = "preflight_started"
+	CLUSTERSTATUS_PREFLIGHT_FAILED ClusterStatus = "preflight_failed"
+	CLUSTERSTATUS_PREFLIGHT_SUCCEEDED ClusterStatus = "preflight_succeeded"
+	CLUSTERSTATUS_MANAGEMENT_BLOCKED ClusterStatus = "management_blocked"
+	CLUSTERSTATUS_UPGRADING ClusterStatus = "upgrading"
 )
 
 var allowedClusterStatusEnumValues = []ClusterStatus{

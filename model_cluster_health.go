@@ -20,12 +20,12 @@ type ClusterHealth string
 
 // List of clusterHealth
 const (
-	HEALTHY ClusterHealth = "healthy"
-	UNHEALTHY ClusterHealth = "unhealthy"
-	DEGRADED ClusterHealth = "degraded"
-	FAILED_OVER ClusterHealth = "failedOver"
-	INACTIVE_FAILED ClusterHealth = "inactiveFailed"
-	N_A ClusterHealth = "N/A"
+	CLUSTERHEALTH_HEALTHY ClusterHealth = "healthy"
+	CLUSTERHEALTH_UNHEALTHY ClusterHealth = "unhealthy"
+	CLUSTERHEALTH_DEGRADED ClusterHealth = "degraded"
+	CLUSTERHEALTH_FAILED_OVER ClusterHealth = "failedOver"
+	CLUSTERHEALTH_INACTIVE_FAILED ClusterHealth = "inactiveFailed"
+	CLUSTERHEALTH_N_A ClusterHealth = "N/A"
 )
 
 var allowedClusterHealthEnumValues = []ClusterHealth{

@@ -20,10 +20,10 @@ type AllowListStates string
 
 // List of allowListStates
 const (
-	ACTIVE AllowListStates = "active"
-	PENDING AllowListStates = "pending"
-	FAILED AllowListStates = "failed"
-	EXPIRED AllowListStates = "expired"
+	ALLOWLISTSTATES_ACTIVE AllowListStates = "active"
+	ALLOWLISTSTATES_PENDING AllowListStates = "pending"
+	ALLOWLISTSTATES_FAILED AllowListStates = "failed"
+	ALLOWLISTSTATES_EXPIRED AllowListStates = "expired"
 )
 
 var allowedAllowListStatesEnumValues = []AllowListStates{

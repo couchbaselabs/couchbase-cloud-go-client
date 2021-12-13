@@ -20,16 +20,16 @@ type AzureRegions string
 
 // List of azureRegions
 const (
-	CENTRALUS AzureRegions = "centralus"
-	EASTUS2 AzureRegions = "eastus2"
-	EASTUS AzureRegions = "eastus"
-	FRANCECENTRAL AzureRegions = "francecentral"
-	JAPANEAST AzureRegions = "japaneast"
-	NORTHEUROPE AzureRegions = "northeurope"
-	SOUTHEASTASIA AzureRegions = "southeastasia"
-	UKSOUTH AzureRegions = "uksouth"
-	WESTEUROPE AzureRegions = "westeurope"
-	WESTUS2 AzureRegions = "westus2"
+	AZUREREGIONS_CENTRALUS AzureRegions = "centralus"
+	AZUREREGIONS_EASTUS2 AzureRegions = "eastus2"
+	AZUREREGIONS_EASTUS AzureRegions = "eastus"
+	AZUREREGIONS_FRANCECENTRAL AzureRegions = "francecentral"
+	AZUREREGIONS_JAPANEAST AzureRegions = "japaneast"
+	AZUREREGIONS_NORTHEUROPE AzureRegions = "northeurope"
+	AZUREREGIONS_SOUTHEASTASIA AzureRegions = "southeastasia"
+	AZUREREGIONS_UKSOUTH AzureRegions = "uksouth"
+	AZUREREGIONS_WESTEUROPE AzureRegions = "westeurope"
+	AZUREREGIONS_WESTUS2 AzureRegions = "westus2"
 )
 
 var allowedAzureRegionsEnumValues = []AzureRegions{
