@@ -2,13 +2,13 @@ package tests
 
 import (
 	"context"
-	"fmt"
 	"github.com/couchbaselabs/couchbase-cloud-go-client"
+	"math"
 	"os"
 	"testing"
 )
 
-func TestGetProject(t *testing.T) {
+func TestGetClouds(t *testing.T) {
 	ctx := context.WithValue(
 		context.Background(),
 		couchbasecapella.ContextAPIKeys,
@@ -22,14 +22,22 @@ func TestGetProject(t *testing.T) {
 		},
 	)
 
-	projectId := "5efaa2fc-3917-4da7-8e84-5321c56bb40f"
 	configuration := couchbasecapella.NewConfiguration()
 	apiClient := couchbasecapella.NewAPIClient(configuration)
-	project, _, err := apiClient.ProjectsApi.ProjectsShow(ctx, projectId).Execute()
-	if err != nil {
-		t.Fatalf("Error when calling `ProjectsApi.ProjectsShow(ctx)`: %v\n", err)
+
+	var page int32 = 1
+	var lastPage int32 = math.MaxInt16
+
+
+	for ok := true; ok; ok = page <= lastPage {
+		listCloudsResponse, _, err := apiClient.CloudsApi.CloudsList(ctx).Page(page).PerPage(10).Execute()
+
+		if err != nil {
+			t.Fatalf("Error when calling `CloudsApi.CloudsList(ctx)`: %v\n", err)
+		}
+
+		lastPage = *listCloudsResponse.Cursor.Pages.Last
+		page++
 	}
 
-	fmt.Println("Project name is " + project.Name)
-	fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.ProjectsShow(ctx)`: %v\n", project)
 }

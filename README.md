@@ -117,6 +117,7 @@ Class | Method | HTTP request | Description
 *ClustersApi* | [**ClustersDelete**](docs/ClustersApi.md#clustersdelete) | **Delete** /v2/clusters/{id} | Delete cluster
 *ClustersApi* | [**ClustersDeleteAllowlistEntry**](docs/ClustersApi.md#clustersdeleteallowlistentry) | **Delete** /v2/clusters/{id}/allowlist | Delete entry from allowlist
 *ClustersApi* | [**ClustersDeleteBucket**](docs/ClustersApi.md#clustersdeletebucket) | **Delete** /v2/clusters/{id}/buckets | Delete bucket in cluster
+*ClustersApi* | [**ClustersDeleteSingleBucket**](docs/ClustersApi.md#clustersdeletesinglebucket) | **Delete** /v2/clusters/{id}/buckets/{bucketId} | Delete an existing bucket
 *ClustersApi* | [**ClustersDeleteUser**](docs/ClustersApi.md#clustersdeleteuser) | **Delete** /v2/clusters/{id}/users/{username} | Delete Database User
 *ClustersApi* | [**ClustersGetAllowlist**](docs/ClustersApi.md#clustersgetallowlist) | **Get** /v2/clusters/{id}/allowlist | Get current allowlist
 *ClustersApi* | [**ClustersGetCertificate**](docs/ClustersApi.md#clustersgetcertificate) | **Get** /v2/clusters/{id}/certificate | Get Cluster Certificate
@@ -128,7 +129,17 @@ Class | Method | HTTP request | Description
 *ClustersApi* | [**ClustersStatus**](docs/ClustersApi.md#clustersstatus) | **Get** /v2/clusters/{id}/status | Get Cluster Status
 *ClustersApi* | [**ClustersUpdateAllowlist**](docs/ClustersApi.md#clustersupdateallowlist) | **Put** /v2/clusters/{id}/allowlist | Update the allowlist for a cluster
 *ClustersApi* | [**ClustersUpdateBucket**](docs/ClustersApi.md#clustersupdatebucket) | **Put** /v2/clusters/{id}/buckets | Update bucket in cluster
+*ClustersApi* | [**ClustersUpdateSingleBucket**](docs/ClustersApi.md#clustersupdatesinglebucket) | **Put** /v2/clusters/{id}/buckets/{bucketId} | Update an existing bucket
 *ClustersApi* | [**ClustersUpdateUser**](docs/ClustersApi.md#clustersupdateuser) | **Put** /v2/clusters/{id}/users/{username} | Update Database User
+*ClustersV3Api* | [**ClustersV3create**](docs/ClustersV3Api.md#clustersv3create) | **Post** /v3/clusters | Create Cluster V3
+*ClustersV3Api* | [**ClustersV3createUser**](docs/ClustersV3Api.md#clustersv3createuser) | **Post** /v3/clusters/{id}/users | Create cluster user
+*ClustersV3Api* | [**ClustersV3delete**](docs/ClustersV3Api.md#clustersv3delete) | **Delete** /v3/clusters/{id} | Delete Cluster V3
+*ClustersV3Api* | [**ClustersV3list**](docs/ClustersV3Api.md#clustersv3list) | **Get** /v3/clusters | List all clusters v3
+*ClustersV3Api* | [**ClustersV3show**](docs/ClustersV3Api.md#clustersv3show) | **Get** /v3/clusters/{id} | Get Cluster Info V3
+*ClustersV3Api* | [**ClustersV3status**](docs/ClustersV3Api.md#clustersv3status) | **Get** /v3/clusters/{id}/status | Get Cluster Status V3
+*ClustersV3Api* | [**ClustersV3updateMeta**](docs/ClustersV3Api.md#clustersv3updatemeta) | **Put** /v3/clusters/{id}/meta | Update Cluster Metadata V3
+*ClustersV3Api* | [**ClustersV3updateServers**](docs/ClustersV3Api.md#clustersv3updateservers) | **Put** /v3/clusters/{id}/servers | Update Cluster Servers V3
+*ClustersV3Api* | [**ClustersV3updateSupport**](docs/ClustersV3Api.md#clustersv3updatesupport) | **Put** /v3/clusters/{id}/support | Update Cluster Support Package V3
 *ProjectsApi* | [**ProjectsCreate**](docs/ProjectsApi.md#projectscreate) | **Post** /v2/projects | Create project
 *ProjectsApi* | [**ProjectsDelete**](docs/ProjectsApi.md#projectsdelete) | **Delete** /v2/projects/{id} | Delete project
 *ProjectsApi* | [**ProjectsList**](docs/ProjectsApi.md#projectslist) | **Get** /v2/projects | List Projects
@@ -198,7 +209,38 @@ Class | Method | HTTP request | Description
  - [StatusOK](docs/StatusOK.md)
  - [SupportPackageType](docs/SupportPackageType.md)
  - [SupportTimezones](docs/SupportTimezones.md)
+ - [UpdateBucketRequest](docs/UpdateBucketRequest.md)
  - [UpdateDatabaseUserRequest](docs/UpdateDatabaseUserRequest.md)
+ - [V3BucketRoles](docs/V3BucketRoles.md)
+ - [V3Cluster](docs/V3Cluster.md)
+ - [V3ClusterList](docs/V3ClusterList.md)
+ - [V3ClusterListData](docs/V3ClusterListData.md)
+ - [V3ClusterListDataItems](docs/V3ClusterListDataItems.md)
+ - [V3ClusterPlace](docs/V3ClusterPlace.md)
+ - [V3ClusterServers](docs/V3ClusterServers.md)
+ - [V3ClusterStatus](docs/V3ClusterStatus.md)
+ - [V3ClusterStatusResponse](docs/V3ClusterStatusResponse.md)
+ - [V3ClusterStorage](docs/V3ClusterStorage.md)
+ - [V3ClusterVersion](docs/V3ClusterVersion.md)
+ - [V3ClusterVersionComponents](docs/V3ClusterVersionComponents.md)
+ - [V3CouchbaseServices](docs/V3CouchbaseServices.md)
+ - [V3CreateClusterRequest](docs/V3CreateClusterRequest.md)
+ - [V3CreateClusterUserRequest](docs/V3CreateClusterUserRequest.md)
+ - [V3CreateClusterUserRequestBuckets](docs/V3CreateClusterUserRequestBuckets.md)
+ - [V3Environment](docs/V3Environment.md)
+ - [V3Place](docs/V3Place.md)
+ - [V3PlaceHosted](docs/V3PlaceHosted.md)
+ - [V3Provider](docs/V3Provider.md)
+ - [V3Servers](docs/V3Servers.md)
+ - [V3ServersStorage](docs/V3ServersStorage.md)
+ - [V3StorageType](docs/V3StorageType.md)
+ - [V3SupportPackage](docs/V3SupportPackage.md)
+ - [V3SupportPackageTimezones](docs/V3SupportPackageTimezones.md)
+ - [V3SupportPackageType](docs/V3SupportPackageType.md)
+ - [V3UpdateClusterMetaRequest](docs/V3UpdateClusterMetaRequest.md)
+ - [V3UpdateClusterServersRequest](docs/V3UpdateClusterServersRequest.md)
+ - [V3UpdateClusterSupportRequest](docs/V3UpdateClusterSupportRequest.md)
+ - [V3UpdateClusterSupportRequestSupportPackage](docs/V3UpdateClusterSupportRequestSupportPackage.md)
 
 
 ## Documentation For Authorization

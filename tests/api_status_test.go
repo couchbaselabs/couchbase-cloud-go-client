@@ -3,17 +3,16 @@ package tests
 import (
 	"context"
 	"fmt"
+	"github.com/couchbaselabs/couchbase-cloud-go-client"
 	"os"
 	"testing"
-
-	couchbasecloud "github.com/couchbaselabs/couchbase-cloud-go-client"
 )
 
 func TestStatus(t *testing.T) {
 	ctx := context.WithValue(
 		context.Background(),
-		couchbasecloud.ContextAPIKeys,
-		map[string]couchbasecloud.APIKey{
+		couchbasecapella.ContextAPIKeys,
+		map[string]couchbasecapella.APIKey{
 			"accessKey": {
 				Key: os.Getenv("CBC_ACCESS_KEY"),
 			},
@@ -22,8 +21,8 @@ func TestStatus(t *testing.T) {
 			},
 		},
 	)
-	configuration := couchbasecloud.NewConfiguration()
-	apiClient := couchbasecloud.NewAPIClient(configuration)
+	configuration := couchbasecapella.NewConfiguration()
+	apiClient := couchbasecapella.NewAPIClient(configuration)
 	resp, _, err := apiClient.StatusApi.StatusShow(ctx).Execute()
 	if err != nil {
 		t.Fatalf("Error when calling `StatusApi.StatusShow(ctx)`: %v\n", err)
